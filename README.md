@@ -29,6 +29,7 @@ git checkout -b nuovo-branch  # Crea e cambia branch
 git merge nome-branch         # Unisce branch in quello attuale
 
 🔧 Altri utili
+git remote add origin  https://github.com/<tuo-username>/<nome-repo> #setta l'origine della repo su cui pushare  
 git remote -v                 # Vedi remote repo
 git fetch                     # Recupera aggiornamenti (senza merge)
 git diff                      # Differenze tra file modificati

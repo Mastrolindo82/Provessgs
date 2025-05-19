@@ -14,19 +14,65 @@ Esecuzione: npx playwright test
 
 🔁 Comandi base da terminale (integrato in VS Code)
 git init                 # Inizializza repo locale
-git clone <url>         # Clona repo da GitHub
-git status              # Mostra modifiche
-git add .               # Aggiunge tutti i file tracciati
-git commit -m "msg"     # Commit con messaggio
-git push origin main    # Pusha su GitHub
-git pull origin main    # Prende aggiornamenti da GitHub
-git log                 # Mostra cronologia
+git clone <url>          # Clona repo da GitHub
+git status               # Mostra modifiche
+git add .                # Aggiunge tutti i file tracciati
+git commit -m "msg"      # Commit con messaggio
+git push origin main     # Pusha su GitHub
+git pull origin main     # Prende aggiornamenti da GitHub
+git log                  # Mostra cronologia
+git remote remove origin # Rimuove il vecchio remote (se esiste)
 
 🌿 Gestione branch
 git branch nome-branch        # Crea branch
 git checkout nome-branch      # Cambia branch
 git checkout -b nuovo-branch  # Crea e cambia branch
 git merge nome-branch         # Unisce branch in quello attuale
+git branch -d nome-branch     # Elimina branch locale già mergiato
+git branch -D nome-branch     # Elimina branch locale forzatamente
+git push origin --delete nome-branch # Elimina branch remoto
+
+🔀 Flusso di lavoro tipico per feature branch
+# 1. Aggiorna la main locale
+git checkout main
+git pull origin main
+
+# 2. Crea e passa a un nuovo branch per la feature
+git checkout -b feature/nome-feature
+
+# 3. Lavora, aggiungi e committa le modifiche
+git add .
+git commit -m "Implementa nome-feature"
+
+# 4. Pusha il branch su GitHub
+git push origin feature/nome-feature
+
+# 5. (Su GitHub) Apri una Pull Request verso main
+
+# 6. Dopo il merge della PR, elimina il branch locale e remoto
+git checkout main
+git pull origin main
+git branch -d feature/nome-feature
+git push origin --delete feature/nome-feature
+
+🔧 Altri utili
+git remote add origin  https://github.com/<tuo-username>/<nome-repo> # Setta l'origine della repo su cui pushare  
+git remote -v                 # Vedi remote repo
+git fetch                     # Recupera aggiornamenti (senza merge)
+git diff                      # Differenze tra file modificati
+git stash                     # Salva modifiche temporaneamente (non committate)
+git stash pop                 # Recupera modifiche stashed
+git rebase main               # Rebase del branch corrente su main
+git cherry-pick <hash>        # Applica un singolo commit da un altro branch
+
+🛠️  Risoluzione conflitti merge
+# Dopo un merge/rebase con conflitti:
+# 1. Modifica i file per risolvere i conflitti
+# 2. Aggiungi i file risolti
+git add <file>
+# 3. Completa il merge/rebase
+git commit   # (se merge)
+git rebase --continue  # (se rebase)
 
 🔧 Altri utili
 git remote add origin  https://github.com/<tuo-username>/<nome-repo> #setta l'origine della repo su cui pushare  
